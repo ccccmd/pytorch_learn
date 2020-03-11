@@ -25,8 +25,8 @@ class RMBDataset(Dataset):
     def __len__(self):
         return len(self.data_info)
 
-    @staticmethod
-    def get_img_info(data_dir):
+    #@staticmethod
+    def get_img_info(self, data_dir):
         data_info = list()
         for root, dirs, _ in os.walk(data_dir):
             for sub_dir in dirs:
@@ -35,6 +35,6 @@ class RMBDataset(Dataset):
                 for i in range(len(img_names)):
                     img_name = img_names[i]
                     path_img = os.path.join(root, sub_dir, img_name)
-                    label = rmb_label[sub_dir]
+                    label = self.label_name[sub_dir]
                     data_info.append((path_img, int(label)))
         return data_info
